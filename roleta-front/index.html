@@ -1,74 +1,170 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app" class="h-screen overflow-hidden">
-      <div class="flex flex-col items-center justify-center p-2 md:p-16 gap-6 w-screen overflow-hidden h-screen">
-        <header class="w-full h-12 flex justify-between items-center">
-          <h1 class="text-3xl font-bold text-center">Roleta</h1>
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" href="/diamond.png" type="image/png" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>RoletaBET</title>
+	</head>
+	<body>
+		<div
+			id="app"
+			class="flex flex-col min-h-screen w-full bg-slate-950 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-violet-950 from-0% to-slate-950 to-90% text-white"
+		>
+			<div class="h-full max-w-4xl flex flex-col items-center justify-center mx-auto px-6 py-12 flex-1">
+				<header class="flex flex-col justify-center mb-12 relative w-full">
+					<div
+						id="user-info"
+						class="md:absolute right-0 flex gap-4 justify-center items-center mb-8 md:m-0"
+					>
+						<p id="user-email" class="text-md opacity-80">teste@teste</p>
+						<button
+							id="logout"
+							class="bg-red-600 rounded py-0.5 px-3 hover:opacity-80 transition-opacity"
+						>
+							SAIR
+						</button>
+					</div>
 
+					<h1 class="text-3xl font-bold text-center text-white [text-shadow:1px_1px_6px_black]">
+						ROLETA<span class="text-yellow-500">BET</span>
+					</h1>
+				</header>
+				<canvas
+					id="roulette"
+					class="md:w-full aspect-[9/1] shadow-md border-2 border-violet-900 rounded mb-6 relative w-[calc(100%+48px)]"
+				></canvas>
+				<div
+					class="flex text-3xl items-center justify-center gap-2 font-medium h-8 mb-12 [text-shadow:1px_1px_6px_black]"
+				>
+					<img src="/diamond.png" alt="" class="h-8 w-8 drop-shadow-lg" />
+					<span id="balance"></span>
+				</div>
+				<button
+					id="spin"
+					class="hover:opacity-80 transition-opacity px-12 py-3 text-lg bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-violet-600 from-0% to-violet-800 to-100% text-white rounded font-bold"
+				>
+					ROLAR
+				</button>
+				<div id="bet_pots" class="flex flex-col md:flex-row w-full mt-12 gap-4">
+					<div class="flex flex-col gap-4 flex-1">
+						<div class="flex flex-col gap-3">
+							<input
+								type="number"
+								data-color="red"
+								class="bet-input w-full py-3 px-4 border border-red-600 bg-black/60 rounded"
+								min="0"
+								placeholder="300"
+							/>
+							<button
+								data-color="red"
+								class="bet-btn uppercase hover:opacity-80 transition-opacity py-3 px-4 rounded bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-red-600 from-0% to-red-800 to-100% text-white font-bold"
+							>
+								APOSTAR (2x)
+							</button>
+						</div>
+						<div
+							class="flex flex-row-reverse text-3xl items-center justify-center gap-2 font-medium h-8 [text-shadow:1px_1px_6px_black]"
+						>
+							<span class="bet-value-span text-2xl font-bold peer" data-color="red"></span>
+							<img src="/diamond.png" alt="" class="h-8 w-8 drop-shadow-lg peer-empty:hidden" />
+						</div>
+					</div>
 
-          <div id="user-info" class="flex md:w-1/5 w-1/2 min-w-fit gap-4 justify-end items-center">
-            <p id="user-email" class="text-md">teste@teste</p>
-            <button id="logout" class="bg-red-500 min-w-[50px] w-full md:w-1/3 h-2/3 text-white font-semibold rounded-md">Sair</button>
-          </div>
-        </header>
-        <canvas id="roulette" class="w-[864px] h-[96px] shadow-2xl border-2 border-neutral-800">
-          
-        </canvas>
-        <div class="flex text-xl items-center justify-center gap-2 font-medium h-8">
-          <img src="/diamond.svg" class="h-3/4"/>
-          <span id="balance"></span>
-        </div>
-        <button id="spin" class="px-4 py-2 bg-blue-700 text-white rounded-md">Rolar</button>
-        <div id="bet_pots" class="flex flex-col md:flex-row w-screen md:w-3/4 h-[400px] items-center justify-center">
-          <div class="flex flex-col flex-1 p-4 h-full gap-2 w-full items-center">
-            <div class="flex justify-center gap-3 w-full">
-              <input type="number" data-color="red" class="bet-input w-full h-full border border-neutral-200 px-2" min="0">
-              <button data-color="red" class="bet-btn w-1/2 h-12 text-white rounded-md bg-red-500">Apostar (2x)</button>
-            </div>
-            <span class="bet-value-span text-2xl font-bold" data-color="red"></span>
-          </div>
-          <div class="flex flex-col flex-1 p-4 h-full gap-2 w-full items-center">
-            <div class="flex justify-center gap-3 w-full">
-              <input type="number" data-color="green" class="bet-input w-full h-full border border-neutral-200 px-2" min="0">
-              <button data-color="green" class="bet-btn w-1/2 h-12 text-white rounded-md bg-green-600">Apostar (14x)</button>
-            </div>
-            <span class="bet-value-span text-2xl font-bold" data-color="green"></span>
-          </div>
-          <div class="flex flex-col flex-1 p-4 h-full gap-2 w-full items-center">
-            <div class="flex justify-center gap-3">
-              <input type="number" data-color="black" class="bet-input w-full h-full border border-neutral-200 px-2" min="0">
-              <button data-color="black" class="bet-btn w-1/2 h-12 text-white rounded-md bg-neutral-900">Apostar (2x)</button>
-            </div>
-            <span class="bet-value-span text-2xl font-bold" data-color="black"></span>
-          </div>
-        </div>
-      </div>
-    <div id="auth-modal" class="hidden absolute w-screen h-screen left-0 top-0">
-      <div class="bg-black bg-opacity-20 w-screen h-full min-h-full flex items-center justify-center p-4">
-        <div class="w-full md:w-1/3 h-full md:h-1/2 min-h-[530px] bg-neutral-100 rounded-sm shadow-lg">
-          <form id="login-form" class="w-full">
-            <div id="login-page" class="flex flex-col items-center justify-center py-12 px-4 gap-12">
-              <h2 class="text-4xl font-bold">Login</h2>
-                <div class="w-full flex flex-col gap-1">
-                  <input type="text" id="email" class="w-full h-12 border border-neutral-200 px-2" placeholder="E-mail">
-                  <input type="password" id="password" class="w-full h-12 border border-neutral-200 px-2" placeholder="Senha">
-                </div>
-                <p id="register-anchor">Ainda não possui conta? <a class="font-bold" href="#">Registre-se aqui</a></p>
-                <p class="hidden" id="login-anchor">Já possui uma conta? <a class="font-bold" href="#">Faça login aqui</a></p>
-                <button id="login" class="w-full h-12 bg-blue-700 text-white rounded-md">Login</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    </div>
-    <script type="module" src="src/main.js"></script>
-  </body>
+					<div class="flex flex-col gap-4 flex-1">
+						<div class="flex flex-col gap-3">
+							<input
+								type="number"
+								data-color="green"
+								class="bet-input w-full py-3 px-4 border border-green-600 bg-black/60 rounded"
+								min="0"
+								placeholder="300"
+							/>
+							<button
+								data-color="green"
+								class="bet-btn uppercase hover:opacity-80 transition-opacity py-3 px-4 rounded bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-green-600 from-0% to-green-800 to-100% text-white font-bold"
+							>
+								APOSTAR (14x)
+							</button>
+						</div>
+						<div
+							class="flex flex-row-reverse text-3xl items-center justify-center gap-2 font-medium h-8 [text-shadow:1px_1px_6px_black]"
+						>
+							<span class="bet-value-span text-2xl font-bold peer" data-color="green"></span>
+							<img src="/diamond.png" alt="" class="h-8 w-8 drop-shadow-lg peer-empty:hidden" />
+						</div>
+					</div>
+
+					<div class="flex flex-col gap-4 flex-1">
+						<div class="flex flex-col gap-3">
+							<input
+								type="number"
+								data-color="black"
+								class="bet-input w-full py-3 px-4 border border-neutral-600 bg-black/60 rounded"
+								min="0"
+								placeholder="300"
+							/>
+							<button
+								data-color="black"
+								class="bet-btn hover:opacity-80 transition-opacity uppercase py-3 px-4 rounded bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-slate-950 from-0% to-black to-[200%] text-white font-bold"
+							>
+								APOSTAR (2x)
+							</button>
+						</div>
+						<div
+							class="flex flex-row-reverse text-3xl items-center justify-center gap-2 font-medium h-8 [text-shadow:1px_1px_6px_black]"
+						>
+							<span class="bet-value-span text-2xl font-bold peer" data-color="black"></span>
+							<img src="/diamond.png" alt="" class="h-8 w-8 drop-shadow-lg peer-empty:hidden" />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="auth-modal" class="hidden fixed h-full w-full left-0 top-0">
+				<div
+					class="bg-black bg-opacity-60 backdrop-blur-md w-full h-full flex items-center justify-center p-4"
+				>
+					<div
+						class="w-full max-w-md bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-violet-950 from-0% to-slate-950 to-[150%] backdrop-blur-md text-white rounded-md shadow-xl"
+					>
+						<form id="login-form" class="w-full">
+							<div id="login-page" class="flex flex-col items-center justify-center py-8 px-6">
+								<h2 class="text-4xl font-bold mb-8 uppercase [text-shadow:1px_1px_6px_black]">
+									LOGIN
+								</h2>
+								<div class="w-full flex flex-col gap-2">
+									<input
+										type="text"
+										id="email"
+										class="w-full py-3 px-4 border border-neutral-600 bg-black/60 rounded"
+										placeholder="E-mail"
+									/>
+									<input
+										type="password"
+										id="password"
+										class="w-full py-3 px-4 border border-neutral-600 bg-black/60 rounded"
+										placeholder="Senha"
+									/>
+								</div>
+								<button
+									id="login"
+									class="w-full hover:opacity-80 transition-opacity uppercase px-12 py-3 mb-6 mt-6 text-lg bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-violet-600 from-0% to-violet-800 to-100% text-white rounded font-bold"
+								>
+									LOGIN
+								</button>
+								<p class="text-sm text-center" id="register-anchor">
+									Ainda não possui conta?
+									<a class="font-semibold" href="#">Registre-se aqui</a>
+								</p>
+								<p class="hidden text-sm text-center" id="login-anchor">
+									Já possui uma conta? <a class="font-semibold" href="#">Faça login aqui</a>
+								</p>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="module" src="src/main.js"></script>
+	</body>
 </html>
