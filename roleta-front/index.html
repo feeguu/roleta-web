@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="app" class="h-screen overflow-hidden">
+      <div class="flex flex-col items-center justify-center p-2 md:p-16 gap-6 w-screen overflow-hidden h-screen">
+        <header class="w-full h-12 flex justify-between items-center">
+          <h1 class="text-3xl font-bold text-center">Roleta</h1>
+
+
+          <div id="user-info" class="flex md:w-1/5 w-1/2 min-w-fit gap-4 justify-end items-center">
+            <p id="user-email" class="text-md">teste@teste</p>
+            <button id="logout" class="bg-red-500 min-w-[50px] w-full md:w-1/3 h-2/3 text-white font-semibold rounded-md">Sair</button>
+          </div>
+        </header>
+        <canvas id="roulette" class="w-[864px] h-[96px] shadow-2xl border-2 border-neutral-800">
+          
+        </canvas>
+        <div class="flex text-xl items-center justify-center gap-2 font-medium h-8">
+          <img src="/diamond.svg" class="h-3/4"/>
+          <span id="balance"></span>
+        </div>
+        <button id="spin" class="px-4 py-2 bg-blue-700 text-white rounded-md">Rolar</button>
+        <div id="bet_pots" class="flex flex-col md:flex-row w-screen md:w-3/4 h-[400px] items-center justify-center">
+          <div class="flex flex-col flex-1 p-4 h-full gap-2 w-full items-center">
+            <div class="flex justify-center gap-3 w-full">
+              <input type="number" data-color="red" class="bet-input w-full h-full border border-neutral-200 px-2" min="0">
+              <button data-color="red" class="bet-btn w-1/2 h-12 text-white rounded-md bg-red-500">Apostar (2x)</button>
+            </div>
+            <span class="bet-value-span text-2xl font-bold" data-color="red"></span>
+          </div>
+          <div class="flex flex-col flex-1 p-4 h-full gap-2 w-full items-center">
+            <div class="flex justify-center gap-3 w-full">
+              <input type="number" data-color="green" class="bet-input w-full h-full border border-neutral-200 px-2" min="0">
+              <button data-color="green" class="bet-btn w-1/2 h-12 text-white rounded-md bg-green-600">Apostar (14x)</button>
+            </div>
+            <span class="bet-value-span text-2xl font-bold" data-color="green"></span>
+          </div>
+          <div class="flex flex-col flex-1 p-4 h-full gap-2 w-full items-center">
+            <div class="flex justify-center gap-3">
+              <input type="number" data-color="black" class="bet-input w-full h-full border border-neutral-200 px-2" min="0">
+              <button data-color="black" class="bet-btn w-1/2 h-12 text-white rounded-md bg-neutral-900">Apostar (2x)</button>
+            </div>
+            <span class="bet-value-span text-2xl font-bold" data-color="black"></span>
+          </div>
+        </div>
+      </div>
+    <div id="auth-modal" class="hidden absolute w-screen h-screen left-0 top-0">
+      <div class="bg-black bg-opacity-20 w-screen h-full min-h-full flex items-center justify-center p-4">
+        <div class="w-full md:w-1/3 h-full md:h-1/2 min-h-[530px] bg-neutral-100 rounded-sm shadow-lg">
+          <form id="login-form" class="w-full">
+            <div id="login-page" class="flex flex-col items-center justify-center py-12 px-4 gap-12">
+              <h2 class="text-4xl font-bold">Login</h2>
+                <div class="w-full flex flex-col gap-1">
+                  <input type="text" id="email" class="w-full h-12 border border-neutral-200 px-2" placeholder="E-mail">
+                  <input type="password" id="password" class="w-full h-12 border border-neutral-200 px-2" placeholder="Senha">
+                </div>
+                <p id="register-anchor">Ainda não possui conta? <a class="font-bold" href="#">Registre-se aqui</a></p>
+                <p class="hidden" id="login-anchor">Já possui uma conta? <a class="font-bold" href="#">Faça login aqui</a></p>
+                <button id="login" class="w-full h-12 bg-blue-700 text-white rounded-md">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
