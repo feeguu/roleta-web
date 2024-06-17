@@ -54,6 +54,7 @@ export function setupRoulette(canvas, stopCallback) {
     slotMovement = defaultSlotMovement;
     totalLoopTimes = 0;
     stopping = false;
+    callbackCalled = false;
     randomReachedAddition = getRandomNumber(-1, 1) * 100;
     reachedAnimationRunning = false;
   }
